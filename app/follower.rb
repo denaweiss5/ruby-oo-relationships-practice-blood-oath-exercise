@@ -10,9 +10,12 @@ class Follower
     end
 
     def cults
-        my_bloodaoths = BloodOath.all.select {|oath| oath.follower == self}
-    end
-    my_bloodaoths.map do |bloodaoth| bloodoath.cult 
+        my_oath = BloodOath.all.select do |oath| 
+            oath.follower == self
+        end
+        my_cults = my_oath.map do |oath| 
+            oath.cult 
+        end
     end
 
     def join_cult(cult)
@@ -24,7 +27,8 @@ class Follower
     end
 
     def self.of_a_certain_age(age)
-        self.all.select |follower| follower.age == age
+        self.all.select do |follower| follower.age >= age
+        end
     end
 
 end
