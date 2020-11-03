@@ -1,6 +1,6 @@
 class BloodOath
 
-    attr_reader :follower, :cult #, :initiation_date
+    attr_reader :follower, :cult, :initiation_date
     @@all = []
 
     def initialize(follower, cult)

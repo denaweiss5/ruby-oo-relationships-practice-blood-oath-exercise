@@ -4,8 +4,11 @@ class Cult
 
     @@all = []
 
-    def initialize(name)
+    def initialize(name, location, founding_year, slogan)
         @name = name
+        @location = location
+        @founding_year = founding_year
+        @slogan = slogan
         @@all << self
     end
 
@@ -42,4 +45,28 @@ class Cult
             cult.founding_year == year
         end
     end
+
+    def my_oath
+        BloodOath.all.select do |oath| oath.cult == self
+        end
+    end
+
+    def average_age
+        follower_ages = my_oath.map do |oath| oath.follower.age
+        end
+        (follower_ages.sum/follower_ages.size).to_f
+    end
+
+    def my_followers_mottos
+        my_oath.map do |oath| oath.follower.life_motto
+        end
+    end
+
+    # def self.least_popular
+    #     self.all.min_by do |cult|
+    #         cult.followers.length
+    #     end
+    # end
+
+    
 end
